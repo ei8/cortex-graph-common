@@ -26,9 +26,9 @@ namespace works.ei8.Cortex.Graph.Common
 
         public string AuthorTag { get; set; }
 
-        public string LayerId { get; set; }
+        public string RegionId { get; set; }
 
-        public string LayerTag { get; set; }
+        public string RegionTag { get; set; }
 
         public string Timestamp { get; set; }
 
