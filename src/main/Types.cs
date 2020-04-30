@@ -34,7 +34,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace works.ei8.Cortex.Graph.Common
+namespace ei8.Cortex.Graph.Common
 {
     public enum RelativeType
     {
