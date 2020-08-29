@@ -21,5 +21,13 @@ namespace ei8.Cortex.Graph.Common
         public IEnumerable<string> Id { get; set; }
 
         public IEnumerable<string> IdNot { get; set; }
+
+        public RelativeValues? RelativeValues { get; set; }
+
+        public ActiveValues? NeuronActiveValues { get; set; }
+
+        public ActiveValues? TerminalActiveValues { get; set; }
+
+        public int? Limit { get; set; }
     }
 }

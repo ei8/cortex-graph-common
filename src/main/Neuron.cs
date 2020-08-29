@@ -32,6 +32,6 @@ namespace ei8.Cortex.Graph.Common
 
         public string Timestamp { get; set; }
 
-        public IEnumerable<string> Errors { get; set; }
+        public bool Active { get; set; }
     }
 }

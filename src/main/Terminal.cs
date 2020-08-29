@@ -15,5 +15,6 @@ namespace ei8.Cortex.Graph.Common
         public string AuthorId { get; set; }
         public string AuthorTag { get; set; }
         public string Timestamp { get; set; }
+        public bool Active { get; set; }
     }
 }

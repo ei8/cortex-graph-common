@@ -42,4 +42,22 @@ namespace ei8.Cortex.Graph.Common
         Postsynaptic,
         Presynaptic
     }
+
+    [Flags]
+    public enum RelativeValues
+    {
+        None = 0x0,
+        Postsynaptic = 0x1,
+        Presynaptic = 0x2,
+        All = Postsynaptic | Presynaptic
+    }
+
+    [Flags]
+    public enum ActiveValues
+    {
+        None = 0x0,
+        Active = 0x1,
+        Inactive = 0x2,
+        All = Active | Inactive
+    }
 }
