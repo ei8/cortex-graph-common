@@ -22,12 +22,22 @@ namespace ei8.Cortex.Graph.Common
 
         public IEnumerable<string> IdNot { get; set; }
 
+        public IEnumerable<string> RegionId { get; set; }
+
+        public IEnumerable<string> RegionIdNot { get; set; }
+
         public RelativeValues? RelativeValues { get; set; }
 
         public ActiveValues? NeuronActiveValues { get; set; }
 
         public ActiveValues? TerminalActiveValues { get; set; }
 
-        public int? Limit { get; set; }
+        public SortByValue? SortBy { get; set; }
+
+        public SortOrderValue? SortOrder { get; set; }
+
+        public int? PageSize { get; set; }
+
+        public int? Page { get; set; }
     }
 }

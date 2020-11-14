@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,5 +60,50 @@ namespace ei8.Cortex.Graph.Common
         Active = 0x1,
         Inactive = 0x2,
         All = Active | Inactive
+    }
+
+    // EnumMember values map to fields of ei8.Cortex.Graph.Domain.Model.NeuronResult
+    public enum SortByValue
+    {
+        [EnumMember(Value = "Neuron.Tag")]
+        NeuronTag,
+        [EnumMember(Value = "Neuron.CreationDateTime")]
+        NeuronCreationDateTime,
+        [EnumMember(Value = "NeuronCreationAuthorTag")]
+        NeuronCreationAuthorTag,
+        [EnumMember(Value = "Neuron.LastModificationDateTime")]
+        NeuronLastModificationDateTime,
+        [EnumMember(Value = "NeuronLastModificationAuthorTag")]
+        NeuronLastModificationAuthorTag,
+        [EnumMember(Value = "Neuron.UnifiedLastModificationDateTime")] 
+        NeuronUnifiedLastModificationDateTime,
+        [EnumMember(Value = "NeuronUnifiedLastModificationAuthorTag")]
+        NeuronUnifiedLastModificationAuthorTag,
+        [EnumMember(Value = "Neuron.Active")]
+        NeuronActive,
+        [EnumMember(Value = "NeuronRegionTag")]
+        NeuronRegionTag,
+        [EnumMember(Value = "Terminal.Effect")]
+        TerminalEffect,
+        [EnumMember(Value = "Terminal.Strength")]
+        TerminalStrength,
+        [EnumMember(Value = "Terminal.CreationDateTime")]
+        TerminalCreationDateTime,
+        [EnumMember(Value = "TerminalCreationAuthorTag")]
+        TerminalCreationAuthorTag,
+        [EnumMember(Value = "Terminal.LastModificationDateTime")] 
+        TerminalLastModificationDateTime,
+        [EnumMember(Value = "TerminalLastModificationAuthorTag")] 
+        TerminalLastModificationAuthorTag,
+        [EnumMember(Value = "Terminal.Active")]
+        TerminalActive
+    }
+
+    public enum SortOrderValue
+    {
+        [EnumMember(Value = "ASC")]
+        Ascending,
+        [EnumMember(Value = "DESC")]
+        Descending
     }
 }
