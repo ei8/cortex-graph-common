@@ -12,8 +12,8 @@ namespace ei8.Cortex.Graph.Common
         public string Effect { get; set; }
         public string Strength { get; set; }
         public int Version { get; set; }
-        public string AuthorId { get; set; }
-        public string AuthorTag { get; set; }
-        public string Timestamp { get; set; }
+        public AuthorEventInfo Creation { get; set; }
+        public AuthorEventInfo LastModification { get; set; }
+        public bool Active { get; set; }
     }
 }

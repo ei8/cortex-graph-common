@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ei8.Cortex.Graph.Common
 {
-    public class Neuron
+    public class NeuronResult
     {
         public string Id { get; set; }
 
@@ -22,16 +22,14 @@ namespace ei8.Cortex.Graph.Common
 
         public int Version { get; set; }
 
-        public string AuthorId { get; set; }
+        public NeuronInfo Region { get; set; }
 
-        public string AuthorTag { get; set; }
+        public AuthorEventInfo Creation { get; set; }
 
-        public string RegionId { get; set; }
+        public AuthorEventInfo LastModification { get; set; }
 
-        public string RegionTag { get; set; }
+        public AuthorEventInfo UnifiedLastModification { get; set; }
 
-        public string Timestamp { get; set; }
-
-        public IEnumerable<string> Errors { get; set; }
+        public bool Active { get; set; }
     }
 }
