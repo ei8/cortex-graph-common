@@ -67,16 +67,16 @@ namespace ei8.Cortex.Graph.Common
     {
         [EnumMember(Value = "Neuron.Tag")]
         NeuronTag,
-        [EnumMember(Value = "Neuron.CreationDateTime")]
-        NeuronCreationDateTime,
+        [EnumMember(Value = "Neuron.CreationTimestamp")]
+        NeuronCreationTimestamp,
         [EnumMember(Value = "NeuronCreationAuthorTag")]
         NeuronCreationAuthorTag,
-        [EnumMember(Value = "Neuron.LastModificationDateTime")]
-        NeuronLastModificationDateTime,
+        [EnumMember(Value = "Neuron.LastModificationTimestamp")]
+        NeuronLastModificationTimestamp,
         [EnumMember(Value = "NeuronLastModificationAuthorTag")]
         NeuronLastModificationAuthorTag,
-        [EnumMember(Value = "Neuron.UnifiedLastModificationDateTime")] 
-        NeuronUnifiedLastModificationDateTime,
+        [EnumMember(Value = "Neuron.UnifiedLastModificationTimestamp")]
+        NeuronUnifiedLastModificationTimestamp,
         [EnumMember(Value = "NeuronUnifiedLastModificationAuthorTag")]
         NeuronUnifiedLastModificationAuthorTag,
         [EnumMember(Value = "Neuron.Active")]
@@ -87,12 +87,12 @@ namespace ei8.Cortex.Graph.Common
         TerminalEffect,
         [EnumMember(Value = "Terminal.Strength")]
         TerminalStrength,
-        [EnumMember(Value = "Terminal.CreationDateTime")]
-        TerminalCreationDateTime,
+        [EnumMember(Value = "Terminal.CreationTimestamp")]
+        TerminalCreationTimestamp,
         [EnumMember(Value = "TerminalCreationAuthorTag")]
         TerminalCreationAuthorTag,
-        [EnumMember(Value = "Terminal.LastModificationDateTime")] 
-        TerminalLastModificationDateTime,
+        [EnumMember(Value = "Terminal.LastModificationTimestamp")]
+        TerminalLastModificationTimestamp,
         [EnumMember(Value = "TerminalLastModificationAuthorTag")] 
         TerminalLastModificationAuthorTag,
         [EnumMember(Value = "Terminal.Active")]
