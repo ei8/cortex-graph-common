@@ -14,6 +14,7 @@ namespace ei8.Cortex.Graph.Common
         public int Version { get; set; }
         public AuthorEventInfo Creation { get; set; }
         public AuthorEventInfo LastModification { get; set; }
+        public ExternalReferenceInfo ExternalReference { get; set; }
         public bool Active { get; set; }
     }
 }
