@@ -40,8 +40,8 @@ namespace ei8.Cortex.Graph.Common
 
         public int? Page { get; set; }
 
-        public string ExternalReferenceUrl { get; set; }
+        public IEnumerable<string> ExternalReferenceUrl { get; set; }
 
-        public string ExternalReferenceUrlContains { get; set; }
+        public IEnumerable<string> ExternalReferenceUrlContains { get; set; }
     }
 }
