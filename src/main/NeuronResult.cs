@@ -30,6 +30,8 @@ namespace ei8.Cortex.Graph.Common
 
         public AuthorEventInfo UnifiedLastModification { get; set; }
 
+        public string ExternalReferenceUrl { get; set; }
+
         public bool Active { get; set; }
     }
 }

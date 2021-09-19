@@ -96,7 +96,11 @@ namespace ei8.Cortex.Graph.Common
         [EnumMember(Value = "TerminalLastModificationAuthorTag")] 
         TerminalLastModificationAuthorTag,
         [EnumMember(Value = "Terminal.Active")]
-        TerminalActive
+        TerminalActive,
+        [EnumMember(Value = "Neuron.ExternalReferenceUrl")]
+        NeuronExternalReferenceUrl,
+        [EnumMember(Value = "Terminal.ExternalReferenceUrl")]
+        TerminalExternalReferenceUrl
     }
 
     public enum SortOrderValue

@@ -39,5 +39,9 @@ namespace ei8.Cortex.Graph.Common
         public int? PageSize { get; set; }
 
         public int? Page { get; set; }
+
+        public IEnumerable<string> ExternalReferenceUrl { get; set; }
+
+        public IEnumerable<string> ExternalReferenceUrlContains { get; set; }
     }
 }
