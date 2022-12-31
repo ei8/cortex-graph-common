@@ -69,6 +69,9 @@ namespace ei8.Cortex.Graph.Common
         [QueryKey("erurlcontains")]
         public IEnumerable<string> ExternalReferenceUrlContains { get; set; }
 
+        [QueryKey("posterurl")]
+        public IEnumerable<string> PostsynapticExternalReferenceUrl { get; set; }
+
         public override string ToString()
         {
             var queryStringBuilder = new StringBuilder();
@@ -95,6 +98,7 @@ namespace ei8.Cortex.Graph.Common
             this.AppendQuery(this.RegionIdNot, nqType.GetQueryKey(nameof(NeuronQuery.RegionIdNot)), queryStringBuilder, true);
             this.AppendQuery(this.ExternalReferenceUrl, nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrl)), queryStringBuilder);
             this.AppendQuery(this.ExternalReferenceUrlContains, nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains)), queryStringBuilder);
+            this.AppendQuery(this.PostsynapticExternalReferenceUrl, nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl)), queryStringBuilder);
 
             this.AppendQuery(
                     this.RelativeValues,
@@ -204,7 +208,8 @@ namespace ei8.Cortex.Graph.Common
                     SortBy = queryStrings.GetNullableEnumValue<SortByValue>(nqType.GetQueryKey(nameof(NeuronQuery.SortBy))),
                     SortOrder = queryStrings.GetNullableEnumValue<SortOrderValue>(nqType.GetQueryKey(nameof(NeuronQuery.SortOrder))),
                     ExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrl))),
-                    ExternalReferenceUrlContains = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains)))
+                    ExternalReferenceUrlContains = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains))),
+                    PostsynapticExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl))),
                 };
             }
             return result != null;
