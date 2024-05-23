@@ -33,5 +33,7 @@ namespace ei8.Cortex.Graph.Common
         public string ExternalReferenceUrl { get; set; }
 
         public bool Active { get; set; }
+
+        public IEnumerable<TraversalResult> Traversals { get; set; }
     }
 }

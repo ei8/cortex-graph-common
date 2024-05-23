@@ -72,6 +72,12 @@ namespace ei8.Cortex.Graph.Common
         [QueryKey("posterurl")]
         public IEnumerable<string> PostsynapticExternalReferenceUrl { get; set; }
 
+        [QueryKey]
+        public int? Depth { get; set; }
+
+        [QueryKey("direction")]
+        public DirectionValues? DirectionValues { get; set; }
+
         public override string ToString()
         {
             var queryStringBuilder = new StringBuilder();
@@ -149,6 +155,20 @@ namespace ei8.Cortex.Graph.Common
                     queryStringBuilder
                     );
 
+            this.AppendQuery(
+                    this.Depth,
+                    nqType.GetQueryKey(nameof(NeuronQuery.Depth)),
+                    v => v.ToString(),
+                    queryStringBuilder
+                    );
+
+            this.AppendQuery(
+                    this.DirectionValues,
+                    nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues)),
+                    v => ((int)v).ToString(),
+                    queryStringBuilder
+                    );
+
             if (queryStringBuilder.Length > 0)
                 queryStringBuilder.Insert(0, '?');
 
@@ -210,6 +230,8 @@ namespace ei8.Cortex.Graph.Common
                     ExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrl))),
                     ExternalReferenceUrlContains = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains))),
                     PostsynapticExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl))),
+                    Depth = queryStrings.GetNullableIntValue(nqType.GetQueryKey(nameof(NeuronQuery.Depth))),
+                    DirectionValues = queryStrings.GetNullableEnumValue<DirectionValues>(nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues))),
                 };
             }
             return result != null;

@@ -45,6 +45,15 @@ namespace ei8.Cortex.Graph.Common
     }
 
     [Flags]
+    public enum DirectionValues
+    {
+        None = 0x0,
+        Outbound = 0x1,
+        Inbound = 0x2,
+        Any = Outbound | Inbound
+    }
+
+    [Flags]
     public enum RelativeValues
     {
         None = 0x0,
