@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -78,123 +79,119 @@ namespace ei8.Cortex.Graph.Common
         [QueryKey("direction")]
         public DirectionValues? DirectionValues { get; set; }
 
+        [QueryKey("trpostnot")]
+        public IEnumerable<Guid> TraversalPostsynapticNot { get; set; }
+
+        [QueryKey("trmindeppost")]
+        public IEnumerable<DepthIdsPair> TraversalMinimumDepthPostsynaptic { get; set; }
+
+        [QueryKey("trmindeppostnot")]
+        public IEnumerable<DepthIdsPair> TraversalMinimumDepthPostsynapticNot { get; set; }
+
         public override string ToString()
         {
             var queryStringBuilder = new StringBuilder();
 
             var nqType = typeof(NeuronQuery);
 
-            this.AppendQuery(this.Id, nqType.GetQueryKey(nameof(NeuronQuery.Id)), queryStringBuilder);
-            this.AppendQuery(this.IdNot, nqType.GetQueryKey(nameof(NeuronQuery.IdNot)), queryStringBuilder);
-            this.AppendQuery(this.TagContains, nqType.GetQueryKey(nameof(NeuronQuery.TagContains)), queryStringBuilder);
-            this.AppendQuery(this.TagContainsNot, nqType.GetQueryKey(nameof(NeuronQuery.TagContainsNot)), queryStringBuilder);
+            this.Id.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.Id)), queryStringBuilder);
+            this.IdNot.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.IdNot)), queryStringBuilder);
+            this.TagContains.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.TagContains)), queryStringBuilder);
+            this.TagContainsNot.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.TagContainsNot)), queryStringBuilder);
 
-            this.AppendQuery(
-                this.TagContainsIgnoreWhitespace,
+            this.TagContainsIgnoreWhitespace.AppendQuery(
                 nqType.GetQueryKey(nameof(NeuronQuery.TagContainsIgnoreWhitespace)), 
                 v => v.ToString(),
                 queryStringBuilder
                 );
 
-            this.AppendQuery(this.Presynaptic, nqType.GetQueryKey(nameof(NeuronQuery.Presynaptic)), queryStringBuilder);
-            this.AppendQuery(this.PresynapticNot, nqType.GetQueryKey(nameof(NeuronQuery.PresynapticNot)), queryStringBuilder);
-            this.AppendQuery(this.Postsynaptic, nqType.GetQueryKey(nameof(NeuronQuery.Postsynaptic)), queryStringBuilder);
-            this.AppendQuery(this.PostsynapticNot, nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticNot)), queryStringBuilder);
-            this.AppendQuery(this.RegionId, nqType.GetQueryKey(nameof(NeuronQuery.RegionId)), queryStringBuilder, true);
-            this.AppendQuery(this.RegionIdNot, nqType.GetQueryKey(nameof(NeuronQuery.RegionIdNot)), queryStringBuilder, true);
-            this.AppendQuery(this.ExternalReferenceUrl, nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrl)), queryStringBuilder);
-            this.AppendQuery(this.ExternalReferenceUrlContains, nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains)), queryStringBuilder);
-            this.AppendQuery(this.PostsynapticExternalReferenceUrl, nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl)), queryStringBuilder);
+            this.Presynaptic.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.Presynaptic)), queryStringBuilder);
+            this.PresynapticNot.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.PresynapticNot)), queryStringBuilder);
+            this.Postsynaptic.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.Postsynaptic)), queryStringBuilder);
+            this.PostsynapticNot.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticNot)), queryStringBuilder);
+            this.RegionId.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.RegionId)), queryStringBuilder, true);
+            this.RegionIdNot.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.RegionIdNot)), queryStringBuilder, true);
+            this.ExternalReferenceUrl.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrl)), queryStringBuilder);
+            this.ExternalReferenceUrlContains.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.ExternalReferenceUrlContains)), queryStringBuilder);
+            this.PostsynapticExternalReferenceUrl.AppendQuery(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl)), queryStringBuilder);
 
-            this.AppendQuery(
-                    this.RelativeValues,
-                    nqType.GetQueryKey(nameof(NeuronQuery.RelativeValues)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            
+            this.RelativeValues.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.RelativeValues)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.PageSize,
-                    nqType.GetQueryKey(nameof(NeuronQuery.PageSize)),
-                    v => v.ToString(),
-                    queryStringBuilder
-                    );
+            this.PageSize.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.PageSize)),
+                v => v.ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.Page,
-                    nqType.GetQueryKey(nameof(NeuronQuery.Page)),
-                    v => v.ToString(),
-                    queryStringBuilder
-                    );
+            this.Page.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.Page)),
+                v => v.ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.NeuronActiveValues,
-                    nqType.GetQueryKey(nameof(NeuronQuery.NeuronActiveValues)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            this.NeuronActiveValues.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.NeuronActiveValues)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.TerminalActiveValues,
-                    nqType.GetQueryKey(nameof(NeuronQuery.TerminalActiveValues)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            this.TerminalActiveValues.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.TerminalActiveValues)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.SortOrder,
-                    nqType.GetQueryKey(nameof(NeuronQuery.SortOrder)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            this.SortOrder.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.SortOrder)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.SortBy,
-                    nqType.GetQueryKey(nameof(NeuronQuery.SortBy)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            this.SortBy.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.SortBy)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.Depth,
-                    nqType.GetQueryKey(nameof(NeuronQuery.Depth)),
-                    v => v.ToString(),
-                    queryStringBuilder
-                    );
+            this.Depth.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.Depth)),
+                v => v.ToString(),
+                queryStringBuilder
+                );
 
-            this.AppendQuery(
-                    this.DirectionValues,
-                    nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues)),
-                    v => ((int)v).ToString(),
-                    queryStringBuilder
-                    );
+            this.DirectionValues.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues)),
+                v => ((int)v).ToString(),
+                queryStringBuilder
+                );
+
+            this.TraversalPostsynapticNot.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.TraversalPostsynapticNot)), 
+                queryStringBuilder, 
+                fieldSelector: t => t.ToString()
+                );
+
+            this.TraversalMinimumDepthPostsynaptic.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynaptic)),
+                queryStringBuilder,
+                fieldSelector: t => JsonConvert.SerializeObject(t)
+                );
+                        
+            this.TraversalMinimumDepthPostsynapticNot.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynapticNot)), 
+                queryStringBuilder, 
+                fieldSelector: t => JsonConvert.SerializeObject(t)
+                );
 
             if (queryStringBuilder.Length > 0)
                 queryStringBuilder.Insert(0, '?');
 
             return queryStringBuilder.ToString();
-        }
-
-        private void AppendQuery(IEnumerable<string> field, string fieldName, StringBuilder queryStringBuilder, bool convertNulls = false)
-        {
-            if (field != null && field.Any())
-            {
-                if (queryStringBuilder.Length > 0)
-                    queryStringBuilder.Append('&');
-                queryStringBuilder.Append(string.Join("&", field.Select(s => $"{fieldName}={(convertNulls && s == null ? "\0" : HttpUtility.UrlEncode(s))}")));
-            }
-        }
-        private void AppendQuery<T>(Nullable<T> nullableValue, string queryStringKey, Func<T, string> valueProcessor, StringBuilder queryStringBuilder) where T : struct
-        {
-            if (nullableValue.HasValue)
-            {
-                if (queryStringBuilder.Length > 0)
-                    queryStringBuilder.Append('&');
-
-                queryStringBuilder
-                    .Append($"{queryStringKey}=")
-                    .Append(valueProcessor(nullableValue.Value));
-            }
         }
 
         public static bool TryParse(string value, out NeuronQuery result)
@@ -232,6 +229,9 @@ namespace ei8.Cortex.Graph.Common
                     PostsynapticExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl))),
                     Depth = queryStrings.GetNullableIntValue(nqType.GetQueryKey(nameof(NeuronQuery.Depth))),
                     DirectionValues = queryStrings.GetNullableEnumValue<DirectionValues>(nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues))),
+                    TraversalPostsynapticNot = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalPostsynapticNot)), new Func<string, Guid>(s => Guid.Parse(s))),
+                    TraversalMinimumDepthPostsynaptic = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynaptic)), new Func<string, DepthIdsPair>(s => JsonConvert.DeserializeObject<DepthIdsPair>(s))),
+                    TraversalMinimumDepthPostsynapticNot = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynapticNot)), new Func<string, DepthIdsPair>(s => JsonConvert.DeserializeObject<DepthIdsPair>(s)))
                 };
             }
             return result != null;
