@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Web;
 
 namespace ei8.Cortex.Graph.Common
 {
@@ -79,14 +76,8 @@ namespace ei8.Cortex.Graph.Common
         [QueryKey("direction")]
         public DirectionValues? DirectionValues { get; set; }
 
-        [QueryKey("trpostnot")]
-        public IEnumerable<Guid> TraversalPostsynapticNot { get; set; }
-
-        [QueryKey("trmindeppost")]
-        public IEnumerable<DepthIdsPair> TraversalMinimumDepthPostsynaptic { get; set; }
-
-        [QueryKey("trmindeppostnot")]
-        public IEnumerable<DepthIdsPair> TraversalMinimumDepthPostsynapticNot { get; set; }
+        [QueryKey("trdeppost")]
+        public IEnumerable<DepthIdsPair> TraversalDepthPostsynaptic { get; set; }
 
         public override string ToString()
         {
@@ -170,21 +161,9 @@ namespace ei8.Cortex.Graph.Common
                 queryStringBuilder
                 );
 
-            this.TraversalPostsynapticNot.AppendQuery(
-                nqType.GetQueryKey(nameof(NeuronQuery.TraversalPostsynapticNot)), 
-                queryStringBuilder, 
-                fieldSelector: t => t.ToString()
-                );
-
-            this.TraversalMinimumDepthPostsynaptic.AppendQuery(
-                nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynaptic)),
+            this.TraversalDepthPostsynaptic.AppendQuery(
+                nqType.GetQueryKey(nameof(NeuronQuery.TraversalDepthPostsynaptic)),
                 queryStringBuilder,
-                fieldSelector: t => JsonConvert.SerializeObject(t)
-                );
-                        
-            this.TraversalMinimumDepthPostsynapticNot.AppendQuery(
-                nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynapticNot)), 
-                queryStringBuilder, 
                 fieldSelector: t => JsonConvert.SerializeObject(t)
                 );
 
@@ -229,9 +208,7 @@ namespace ei8.Cortex.Graph.Common
                     PostsynapticExternalReferenceUrl = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.PostsynapticExternalReferenceUrl))),
                     Depth = queryStrings.GetNullableIntValue(nqType.GetQueryKey(nameof(NeuronQuery.Depth))),
                     DirectionValues = queryStrings.GetNullableEnumValue<DirectionValues>(nqType.GetQueryKey(nameof(NeuronQuery.DirectionValues))),
-                    TraversalPostsynapticNot = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalPostsynapticNot)), new Func<string, Guid>(s => Guid.Parse(s))),
-                    TraversalMinimumDepthPostsynaptic = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynaptic)), new Func<string, DepthIdsPair>(s => JsonConvert.DeserializeObject<DepthIdsPair>(s))),
-                    TraversalMinimumDepthPostsynapticNot = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalMinimumDepthPostsynapticNot)), new Func<string, DepthIdsPair>(s => JsonConvert.DeserializeObject<DepthIdsPair>(s)))
+                    TraversalDepthPostsynaptic = queryStrings.GetQueryArrayOrDefault(nqType.GetQueryKey(nameof(NeuronQuery.TraversalDepthPostsynaptic)), new Func<string, DepthIdsPair>(s => JsonConvert.DeserializeObject<DepthIdsPair>(s)))
                 };
             }
             return result != null;
